@@ -1,0 +1,7 @@
+<ul>
+  <% for task in @tasks: %>
+    <li>
+      <dl><dt><%= task.title%></dl></dt>
+    </li>
+  <% end %>
+</ul>
