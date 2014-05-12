@@ -1,11 +1,14 @@
 class App.Routers.RaystaskRouter extends Backbone.Router
   routes:
     '':'index'
-    'tasks/:id':'show'
+    'tasks/new': 'new'
 
   index: ->
-    tasksView = new App.Views.Tasks({collection: App.allTasks})    
-    $("#container").html(tasksView.render())
+    allTasks = new App.Collections.Tasks
+    allTasks.fetch().done =>
+      tasksView = new App.Views.Tasks({collection: allTasks})
+      $("#container").html(tasksView.render())
 
-  show:  (id) ->
-    alert("Its show #{id}")
+  new: ->
+    newTask = new App.Views.NewTask()
+    $("#container").html(newTask.render())

@@ -1,3 +1,4 @@
+<a href='/tasks/new' class='add-task'>Add task</a>
 <ul>
   <% for task in @tasks.models: %>
     <li>
