@@ -1,7 +1,7 @@
 <ul>
-  <% for task in @tasks: %>
+  <% for task in @tasks.models: %>
     <li>
-      <dl><dt><%= task.title%></dl></dt>
+      <dl><dt><%= task.get('title') %></dl></dt>
     </li>
   <% end %>
 </ul>
