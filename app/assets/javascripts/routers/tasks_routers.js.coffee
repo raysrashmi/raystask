@@ -1,7 +1,6 @@
 class App.Routers.RaystaskRouter extends Backbone.Router
   routes:
     '':'index'
-    'tasks/new': 'new'
 
   index: ->
     tasksView = new App.Views.Tasks({collection: App.Alltasks})

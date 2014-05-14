@@ -4,6 +4,7 @@ window.Raystask =
   Views: {}
   Routers: {}
   initialize: ->
+    @Alltasks =  new @Collections.Tasks(@tasksJson)
     new  @Routers.RaystaskRouter
     Backbone.history.start({pushState: true})
 
