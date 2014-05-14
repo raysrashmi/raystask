@@ -2,7 +2,12 @@
 <ul>
   <% for task in @tasks.models: %>
     <li>
-      <dl><dt><%= task.get('title') %></dl></dt>
+      <dl>
+        <dt>
+          <input type='checkbox'/>
+          <%= task.get('title') %>
+        </dt>
+      </dl>
     </li>
   <% end %>
 </ul>

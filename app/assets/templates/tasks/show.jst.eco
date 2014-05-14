@@ -1,0 +1,7 @@
+<dl>
+  <dt>
+    <input type='checkbox'/>
+    <%= @task.get('title') %>
+  </dt>
+</dl>
+

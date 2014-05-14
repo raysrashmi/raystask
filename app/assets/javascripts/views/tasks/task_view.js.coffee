@@ -1,6 +1,8 @@
-class Raystask.TaskView extends Backbone.View
-  tagName: 'li'
+class App.Views.TaskView extends Backbone.View
   className: 'task'
-  template: _.template('<dl><dt><%= title %></dl></dt>' )
+
+  template: JST['tasks/show']
+
   render: ->
-    this.$el.html(this.template(this.model.toJSON()))
+    @$el.html(@template(task: @model))
+    this
