@@ -1,4 +1,9 @@
 class App.Views.Tasks extends Backbone.View
+
+  initialize: ->
+    @collection.on('add', @renderTask, this)
+    @collection.on('reset', @render, this)
+    
   template: JST['tasks/index']
   
   events :
@@ -12,9 +17,11 @@ class App.Views.Tasks extends Backbone.View
     @$('.tasks').append(taskView.render().el)
 
   newTask: ->
-    new_task = new App.Models.Task
-    new_task.set({title: $('.task-title').val()})
-    new_task.save()
-    Backbone.history.navigate('/')
-    
-
+    task_title = $('.task-title').val()
+    if task_title
+      new_task = new App.Models.Task
+      new_task.set({title: task_title})
+      new_task.save()
+      @collection.add(new_task)
+      $('.task-title').val('')
+    false
