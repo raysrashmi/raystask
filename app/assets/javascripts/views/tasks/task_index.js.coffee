@@ -1,6 +1,6 @@
 class App.Views.Tasks extends Backbone.View
-  PENDING_KLASS='.pending_task'
-  COMPLETED_KLASS='.completed'
+  PENDING_KLASS='.pending-tasks'
+  COMPLETED_KLASS='.completed-tasks'
 
   initialize: ->
     @collection.on('add', @renderTask, this)
@@ -13,10 +13,8 @@ class App.Views.Tasks extends Backbone.View
     'click .complete' :'updateTask'
 
   render: ->
-    console.log(PENDING_KLASS)
     completed_tasks = @collection.where({completed: true})
     pending_tasks = @collection.where({completed: false})
-    
     @$el.html(@template({completed_tasks: completed_tasks, pending_tasks: pending_tasks}))
 
   renderTask: (task) =>

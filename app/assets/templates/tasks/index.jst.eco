@@ -1,7 +1,6 @@
 <header>
   <form>
     <input type='text' class='task-title' placeholder='Add new task'/>
-    <input type='submit'/>
   </form>
 </header>
 
@@ -17,6 +16,7 @@
     </li>
   <% end %>
 </ul>
+
 <h3>Completed Task</h3>
 <ul class='completed-tasks'>
 <% for task in @completed_tasks: %>

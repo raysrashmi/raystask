@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   respond_to :html, only: [:index]
 
   def index
-    @tasks = Task.all
+    @tasks = Task.order('updated_at desc').all
     respond_with @tasks
   end
   
