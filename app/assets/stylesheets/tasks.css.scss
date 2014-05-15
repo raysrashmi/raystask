@@ -3,6 +3,10 @@
   margin-right: auto;
   width: 46em;
   text-align: center;
+  a{
+    color: black;
+    text-align: initial;
+  }
 
   h3{
     font-size: 1.5em;
@@ -24,6 +28,11 @@
       height: 30px;
       border-radius: 5px;
       font-size: 1.2em;
+      &:hover{
+        a.remove{
+          display: inline;
+        }
+      }
     }
     &.pending-tasks{
       li{
@@ -37,9 +46,19 @@
       }
     }
   }
+  .remove{
+    float: right;
+    margin-right: 10px;
+    text-decoration: initial;
+    padding-top: 5px;
+  }
 }
 .task-title{
   height: 30px;
   width: 400px;
   margin: 10px;
+}
+
+.hide{
+  display: none;
 }

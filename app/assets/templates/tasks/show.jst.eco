@@ -2,6 +2,7 @@
   <dt>
     <input type='checkbox' class='complete' id= '<%= @task.get('id')%>' / >
     <%= @task.get('title') %>
+      <a href='#' class='remove hide' title='delete'>x</a>
   </dt>
 </dl>
 
