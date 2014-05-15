@@ -1,19 +1,33 @@
 <header>
   <form>
-    <input type='text' class='task-title'/>
+    <input type='text' class='task-title' placeholder='Add new task'/>
     <input type='submit'/>
   </form>
 </header>
 
-<ul class='tasks'>
-  <% for task in @tasks.models: %>
-    <li>
+<ul class='pending-tasks'>
+  <% for task in @pending_tasks: %>
+    <li id='<%= task.get('id') %>' >
       <dl>
         <dt>
-          <input type='checkbox'/>
+          <input type='checkbox' class='complete' id= '<%= task.get('id')%>' />
           <%= task.get('title') %>
         </dt>
       </dl>
     </li>
   <% end %>
+</ul>
+<h3>Completed Task</h3>
+<ul class='completed-tasks'>
+<% for task in @completed_tasks: %>
+    <li id='<%= task.get('id') %>' >
+      <dl>
+        <dt>
+          <input type='checkbox' class='complete' id='<%= task.get('id')%>' checked='checked' />
+          <%= task.get('title') %>
+        </dt>
+      </dl>
+    </li>
+  <% end %>
+
 </ul>

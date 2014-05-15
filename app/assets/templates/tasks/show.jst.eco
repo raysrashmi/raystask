@@ -1,6 +1,6 @@
 <dl>
   <dt>
-    <input type='checkbox'/>
+    <input type='checkbox' class='complete' id= '<%= @task.get('id')%>' / >
     <%= @task.get('title') %>
   </dt>
 </dl>
