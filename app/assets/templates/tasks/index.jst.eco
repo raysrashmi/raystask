@@ -1,9 +1,5 @@
 <h1>Tasks</h1>
-<header>
-  <form>
-    <input type='text' class='task-title' placeholder='Add new task'/>
-  </form>
-</header>
+<header></header>
 
 <ul class='pending-tasks'>
 </ul>

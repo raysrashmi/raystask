@@ -4,11 +4,12 @@ class App.Views.Tasks extends Backbone.View
 
   initialize: ->
     @collection.on('add', @renderPendingTask, this)
+    @inputView = new App.Views.TaskNew(model: new App.Models.Task)
 
   template: JST['tasks/index']
 
   events :
-    'submit': 'newTask'
+    'submit': 'addTask'
     'click .complete' :'updateState'
     'click .remove' :'removeTask'
     'dblclick li.task' :'editTaskTitle'
@@ -16,6 +17,8 @@ class App.Views.Tasks extends Backbone.View
   render: ->
     @$el.html(@template())
     @renderAll()
+    @inputView.render()
+    @$('header').append(@inputView.el)
     this
 
   renderAll: ->
@@ -35,7 +38,7 @@ class App.Views.Tasks extends Backbone.View
   renderCompletedTask: (task) => 
     @$(COMPLETED_KLASS).prepend(@renderTask(task))
 
-  newTask: ->
+  addTask: ->
     task_title = $('.task-title').val()
     if task_title
       new_task = new App.Models.Task({title: task_title})
