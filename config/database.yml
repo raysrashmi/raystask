@@ -1,3 +1,7 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+
 development: &default
   adapter: postgresql
   database: raystask_development
@@ -7,9 +11,6 @@ development: &default
   timeout: 5000
 
 test:
-  <<: *default
   database: raystask_test
 
-production:
-  <<: *default
-
+production: &default
