@@ -4,13 +4,14 @@ class App.Views.Tasks extends Backbone.View
 
   initialize: ->
     @collection.on('add', @renderPendingTask, this)
-    
+
   template: JST['tasks/index']
-  
+
   events :
     'submit': 'newTask'
-    'click .complete' :'updateTask'
+    'click .complete' :'updateState'
     'click .remove' :'removeTask'
+    'dblclick li.task' :'editTaskTitle'
 
   render: ->
     @$el.html(@template())
@@ -29,7 +30,6 @@ class App.Views.Tasks extends Backbone.View
     taskView.el
 
   renderPendingTask: (task) => 
-    console.log(task.toJSON())
     @$(PENDING_KLASS).prepend(@renderTask(task))
 
   renderCompletedTask: (task) => 
@@ -45,7 +45,7 @@ class App.Views.Tasks extends Backbone.View
         $('.task-title').val('')
     false
     
-  updateTask: (e)->
+  updateState: (e)->
     current_task = e.currentTarget
     task = @collection.get($(current_task).attr('id'))
     task.set({completed:  current_task.checked})
@@ -60,4 +60,10 @@ class App.Views.Tasks extends Backbone.View
     task = @collection.get($(current_task).parents("li").attr('id'))
     task.destroy().done ->
       $("li##{task.get('id')}").remove()
+
+  editTaskTitle: (e)->
+    task = @collection.get($(e.currentTarget).attr('id'))
+    newTask = new App.Views.TaskNew(model: task)
+    newTask.render()
+    $(e.currentTarget).html(newTask.el)
 

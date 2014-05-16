@@ -1,2 +1,1 @@
-<input type='text' class='task-title'/>
-<input type='submit'/>
+<input type='text' class='task-title' placeholder='Add new task' value= '<%= @task.get('title')%>'/>
