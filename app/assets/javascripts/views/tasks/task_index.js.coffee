@@ -3,8 +3,7 @@ class App.Views.Tasks extends Backbone.View
   COMPLETED_KLASS='.completed-tasks'
 
   initialize: ->
-    @collection.on('add', @renderTask, this)
-    @collection.on('reset', @render, this)
+    @collection.on('add', @renderPendingTask, this)
     
   template: JST['tasks/index']
   
@@ -21,21 +20,29 @@ class App.Views.Tasks extends Backbone.View
   renderAll: ->
     completed_tasks = @collection.where({completed: true})
     pending_tasks = @collection.where({completed: false})
-    @renderTask(task,COMPLETED_KLASS) for task in completed_tasks 
-    @renderTask(task, PENDING_KLASS) for task in pending_tasks 
+    @renderCompletedTask(task) for task in completed_tasks
+    @renderPendingTask(task) for task in pending_tasks
 
-  renderTask: (task, container_klass) =>
+  renderTask: (task) =>
     taskView = new App.Views.TaskView(model: task, tagName: 'li', id: task.get('id'))
     taskView.render()
-    @$(container_klass).prepend(taskView.el)
-    
+    taskView.el
+
+  renderPendingTask: (task) => 
+    console.log(task.toJSON())
+    @$(PENDING_KLASS).prepend(@renderTask(task))
+
+  renderCompletedTask: (task) => 
+    @$(COMPLETED_KLASS).prepend(@renderTask(task))
+
   newTask: ->
     task_title = $('.task-title').val()
     if task_title
       new_task = new App.Models.Task({title: task_title})
-      new_task.save()
-      @collection.add(new_task)
-      $('.task-title').val('')
+      new_task.save().done =>
+        new_task.set(id: new_task['id'])
+        @collection.add(new_task)
+        $('.task-title').val('')
     false
     
   updateTask: (e)->
