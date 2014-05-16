@@ -10,7 +10,7 @@ class App.Views.Tasks extends Backbone.View
 
   events :
     'submit': 'addTask'
-    'click .complete' :'updateState'
+    'click .toggle' :'updateState'
     'click .remove' :'removeTask'
     'dblclick li.task' :'editTaskTitle'
 

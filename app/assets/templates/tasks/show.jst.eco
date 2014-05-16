@@ -1,6 +1,10 @@
 <dl>
   <dt>
-    <input type='checkbox' class='complete' id= '<%= @task.get('id')%>' / >
+    <%if @task.get('completed'):%>
+      <input type='checkbox' class='toggle' id= '<%= @task.get('id')%>' checked='checked'/ >
+    <% else: %>
+      <input type='checkbox' class='toggle' id= '<%= @task.get('id')%>' / >
+    <% end %>
     <label><%= @task.get('title') %></label>
     <a href='#' class='remove hide' title='delete'>x</a>
   </dt>
