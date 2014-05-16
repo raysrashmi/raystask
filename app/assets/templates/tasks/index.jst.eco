@@ -5,30 +5,6 @@
 </header>
 
 <ul class='pending-tasks'>
-  <% for task in @pending_tasks: %>
-    <li id='<%= task.get('id') %>' >
-      <dl>
-        <dt>
-          <input type='checkbox' class='complete' id= '<%= task.get('id')%>' />
-          <%= task.get('title') %>
-          <a href='#' class='remove hide' title='delete'>x</a>
-        </dt>
-      </dl>
-    </li>
-  <% end %>
 </ul>
-
-<h3>Completed Task</h3>
-<ul class='completed-tasks'>
-<% for task in @completed_tasks: %>
-    <li id='<%= task.get('id') %>' >
-      <dl>
-        <dt>
-          <input type='checkbox' class='complete' id='<%= task.get('id')%>' checked='checked' />
-          <%= task.get('title') %>
-          <a href='#' class='remove hide' title='delete'>x</a>
-        </dt>
-      </dl>
-    </li>
-  <% end %>
-</ul>
+<h3>Completed Tasks</h3>
+<ul class='completed-tasks'></ul>
