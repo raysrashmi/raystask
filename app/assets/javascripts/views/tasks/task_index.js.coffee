@@ -40,14 +40,16 @@ class App.Views.Tasks extends Backbone.View
 
   addTask: ->
     task_title = $('.task-title').val()
-    if task_title
+    if task_title.trim().length > 5
       new_task = new App.Models.Task({title: task_title})
       new_task.save().done =>
         new_task.set(id: new_task['id'])
         @collection.add(new_task)
         $('.task-title').val('')
+    else
+      alert('Enter at leat 5 characters')
     false
-    
+
   updateState: (e)->
     current_task = e.currentTarget
     task = @collection.get($(current_task).attr('id'))
