@@ -47,7 +47,7 @@ class App.Views.Tasks extends Backbone.View
         @collection.add(new_task)
         $('.task-title').val('')
     else
-      alert('Enter at leat 5 characters')
+      alert('Enter at least 5 characters')
     false
 
   updateState: (e)->
